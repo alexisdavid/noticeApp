@@ -1,0 +1,38 @@
+<ion-header no-border>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Notice App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col *ngFor="let notice of notices; let i = index" size='12' size-md='4' size-lg='3' size-sm='6' size-xs='12'>
+        <ion-card color="dark" mode='ios'>
+          <ion-card-header>
+            <ion-card-subtitle>
+              <span class="text-primary">
+                {{i+1}}.
+              </span>
+
+              <span class="noticia-sourse-name">
+                {{notice.source.name}}
+              </span>
+            </ion-card-subtitle>
+            <ion-card-title>{{notice.title}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-img *ngIf="notice.urlToImage" [src]="notice.urlToImage"></ion-img>
+          <ion-card-content>
+            {{notice.description}}
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
