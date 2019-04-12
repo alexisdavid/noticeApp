@@ -1,0 +1,20 @@
+<ion-card color="dark" mode='ios'>
+  <ion-card-header>
+    <ion-card-subtitle>
+      <span class="text-primary">
+        {{i+1}}.
+      </span>
+
+      <span class="noticia-sourse-name">
+        {{notice.source.name}}
+      </span>
+    </ion-card-subtitle>
+    <ion-card-title>{{notice.title}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-img *ngIf="notice.urlToImage" [src]="notice.urlToImage"></ion-img>
+  <ion-card-content>
+    {{notice.description}}
+  </ion-card-content>
+
+</ion-card>
