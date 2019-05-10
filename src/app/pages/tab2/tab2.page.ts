@@ -2,6 +2,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSegment } from '@ionic/angular';
 import { NoticiasService } from '../../services/noticias.service';
+import { Article } from '../../interfaces/notice.interface';
 
 @Component({
   selector: 'app-tab2',
@@ -23,13 +24,31 @@ export class Tab2Page implements OnInit {
     "technology"
   ];
 
+  noticias: Article[] = []
+
   constructor(public noticiasService: NoticiasService) { }
   ngOnInit() {
     this.segment.value = this.categorias[0];
-    this.noticiasService.getTopHeadlinesCategory(this.categorias[0]).subscribe(data => {
+    this.cargarNoticias(this.segment.value);
+
+
+  }
+
+  cambioCategoria(event) {
+    console.log(event.detail.value);
+    this.noticias = [];
+    this.cargarNoticias(event.detail.value);
+
+  }
+  cargarNoticias(categoria: string) {
+
+    this.noticiasService.getTopHeadlinesCategory(categoria).subscribe(data => {
       console.log(data);
+      this.noticias.push(...data.articles)
+      console.log(this.noticias);
 
     })
+
   }
 
 
